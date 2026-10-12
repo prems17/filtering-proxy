@@ -254,9 +254,12 @@ static void handle_client(int client, const std::string& client_ip) {
         std::string hostport = (slash == std::string::npos) ? rest : rest.substr(0, slash);
         path = (slash == std::string::npos) ? "/" : rest.substr(slash);
         split_host_port(hostport, "80", host, port);
-    } else {  // fall back to Host header
-        split_host_port(get_header(req, "Host"), "80", host, port);
-        path = req.target;
+    } else {
+        // A real proxy client always sends an absolute URL. A bare path like "GET /" means
+        // someone opened the proxy port directly (e.g. a browser or port-forwarding check).
+        // Forwarding it would make the proxy connect to itself in a loop, so reject it.
+        send_error(client, 400, "This is a proxy server. Configure your client to use it as an HTTP proxy.");
+        return;
     }
     if (host.empty()) { send_error(client, 400, "Bad Request"); return; }
 

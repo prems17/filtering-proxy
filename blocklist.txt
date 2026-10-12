@@ -1,0 +1,3 @@
+blocked-site.com
+ads.example.com
+tracker.example.net

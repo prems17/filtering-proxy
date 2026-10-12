@@ -44,7 +44,7 @@ curl -x http://localhost:8888 http://example.com
 curl -x http://localhost:8888 https://example.com
 
 # Blocked domain (listed in blocklist.txt)
-curl -x http://localhost:8888 http://blocked-site.com   # -> 403 Forbidden
+curl -x http://localhost:8888 http://blocked-example.com   # -> 403 Forbidden
 ```
 
 ## Design decisions

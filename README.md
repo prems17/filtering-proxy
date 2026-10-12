@@ -67,15 +67,3 @@ curl -x http://localhost:8888 http://blocked-site.com   # -> 403 Forbidden
 
 - Tested with multiple simultaneous connections by running parallel `curl` requests
 - Manually verified allow, block, and HTTPS tunnel behavior with `curl`
-
-## Progress
-
-Tick these off as you build, then delete this section when everything is done.
-
-- [ ] TCP listener and HTTP request parsing
-- [ ] HTTP forwarding to origin server
-- [ ] `CONNECT` tunneling for HTTPS
-- [ ] Blocklist policy engine (403 response)
-- [ ] Request logging
-- [ ] Thread pool
-- [ ] Partial reads, timeouts, connection resets
